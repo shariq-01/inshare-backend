@@ -8,12 +8,15 @@ const showRouter = require("./routes/show.route");
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: process.env.ALLOWED_CLIENTS.split(","),
+};
+
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 5000;
 
 //Basic middlwares
-
 app.use(express.json());
 
 //Making folder public
